@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using TariffComparison.Services.Abstractions;
@@ -7,54 +7,44 @@ using TariffComparison.Services.Implementations;
 namespace TariffComparison.Tests
 {
     [TestClass]
-    public class PackagedAnnualCostsCalculationStrategyTest
+    public class BasicAnnualCostsCalculationStrategyTest
     {
         private IAnnualCostsCalculationStrategy _service;
 
         [TestInitialize]
         public void Setup()
         {
-            _service = new PackagedAnnualCostsCalculationStrategy();
+            _service = new BasicAnnualCostsCalculationStrategy();
         }
 
         [TestMethod]
-        public void GetAnnualCostsFor3500_Expected800()
+        public void GetAnnualCostsFor3500_Expected830()
         {
             // Act.
             var annualCosts = _service.GetAnnualCosts(3500);
 
             // Assert.
-            annualCosts.Should().Be(800);
+            annualCosts.Should().Be(830);
         }
 
         [TestMethod]
-        public void GetAnnualCostsFor4000_Expected800()
-        {
-            // Act.
-            var annualCosts = _service.GetAnnualCosts(4000);
-
-            // Assert.
-            annualCosts.Should().Be(800);
-        }
-
-        [TestMethod]
-        public void GetAnnualCostsFor4500_Expected950()
+        public void GetAnnualCostsFor4500_Expected1050()
         {
             // Act.
             var annualCosts = _service.GetAnnualCosts(4500);
 
             // Assert.
-            annualCosts.Should().Be(950);
+            annualCosts.Should().Be(1050);
         }
 
         [TestMethod]
-        public void GetAnnualCostsFor6000_Expected1400()
+        public void GetAnnualCostsFor6000_Expected1380()
         {
             // Act.
             var annualCosts = _service.GetAnnualCosts(6000);
 
             // Assert.
-            annualCosts.Should().Be(1400);
+            annualCosts.Should().Be(1380);
         }
 
         [TestMethod]
