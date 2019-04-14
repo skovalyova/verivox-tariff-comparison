@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using TariffComparison.Enums;
 using TariffComparison.Models;
 using TariffComparison.Services.Abstractions;
 
@@ -14,19 +16,38 @@ namespace TariffComparison.Services.Implementations
                 new Product
                 {
                     Name = "Basic electricity tariff",
-                    AnnualCostsCalculationStrategy = new BasicAnnualCostsCalculationStrategy()
+                    AnnualCostsCalculationStrategyType = StrategyTypes.Basic
                 },
                 new Product
                 {
                     Name = "Packaged tariff",
-                    AnnualCostsCalculationStrategy = new PackagedAnnualCostsCalculationStrategy()
+                    AnnualCostsCalculationStrategyType = StrategyTypes.Packaged
                 }
             };
 
             products
-                .ForEach(p => p.AnnualCostsPerYear = p.AnnualCostsCalculationStrategy.GetAnnualCosts(consumption));
+                .ForEach(product =>
+                {
+                    var strategy = GetStrategyByType(product.AnnualCostsCalculationStrategyType);
+                    product.AnnualCostsPerYear = strategy.GetAnnualCosts(consumption);
+                });
 
             return products.OrderBy(p => p.AnnualCostsPerYear).ToList();
+        }
+
+        private static IAnnualCostsCalculationStrategy GetStrategyByType(StrategyTypes type)
+        {
+            switch (type)
+            {
+                case StrategyTypes.Basic:
+                    return new BasicAnnualCostsCalculationStrategy();
+
+                case StrategyTypes.Packaged:
+                    return new PackagedAnnualCostsCalculationStrategy();
+
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }

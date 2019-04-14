@@ -1,4 +1,4 @@
-﻿using TariffComparison.Services.Abstractions;
+﻿using TariffComparison.Enums;
 
 namespace TariffComparison.Models
 {
@@ -8,7 +8,6 @@ namespace TariffComparison.Models
 
         public decimal AnnualCostsPerYear { get; set; }
 
-        // TODO: get it from some key string.
-        public IAnnualCostsCalculationStrategy AnnualCostsCalculationStrategy { get; set; }
+        public StrategyTypes AnnualCostsCalculationStrategyType { get; set; }
     }
 }

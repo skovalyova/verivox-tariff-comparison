@@ -5,9 +5,9 @@ namespace TariffComparison.Services.Implementations
 {
     public class PackagedAnnualCostsCalculationStrategy : IAnnualCostsCalculationStrategy
     {
-        public const decimal Threshold = 4000m;
-        public const decimal BaseCosts = 800m;
-        public const decimal AdditionalCostsPerKwh = 0.30m;
+        private const decimal Threshold = 4000m;
+        private const decimal BaseCosts = 800m;
+        private const decimal AdditionalCostsPerKwh = 0.30m;
 
         /// <summary>
         /// Calculation model: 800 € for up to 4000 kWh/year and above 4000 kWh/year additionally 30 cent/kWh.

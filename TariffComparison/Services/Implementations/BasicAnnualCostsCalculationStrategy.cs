@@ -5,9 +5,9 @@ namespace TariffComparison.Services.Implementations
 {
     public class BasicAnnualCostsCalculationStrategy : IAnnualCostsCalculationStrategy
     {
-        public const byte MonthsInYear = 12;
-        public const decimal BaseCostsPerMonth = 5m;
-        public const decimal ConsumptionCostsPerKilowattHour = 0.22m;
+        private const byte MonthsInYear = 12;
+        private const decimal BaseCostsPerMonth = 5m;
+        private const decimal ConsumptionCostsPerKilowattHour = 0.22m;
 
         /// <summary>
         /// Calculation model: base costs per month = 5€ + consumption costs = 22 cent/kWh.
